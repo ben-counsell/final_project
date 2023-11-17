@@ -74,3 +74,6 @@ speed_scale = 0.5
 libraries = {
 "": SubResource("AnimationLibrary_yoxkj")
 }
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_detection_area_body_exited"]
