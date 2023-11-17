@@ -1,18 +1,17 @@
 extends CharacterBody2D
 
+@export var SPEED = 80.0
 
-const SPEED = 100.0#
-
-
-
-func _physics_process(delta):
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction_x = Input.get_axis("ui_left", "ui_right")
+func _physics_process(_delta):
+	var direction_x = Input.get_axis("move_left", "move_right")
+	var direction_y = Input.get_axis("move_up", "move_down")
 	velocity.x = direction_x
-	var direction_y = Input.get_axis("ui_up", "ui_down")
 	velocity.y = direction_y
 	velocity = velocity.normalized() * SPEED
-	$AnimatedSprite2D.flip_h = velocity.x < 0
-	$AnimatedSprite2D.play()
-#	position += velocity * delta
+	if !velocity:
+		$AnimatedSprite2D.play("idle")
+	if velocity.x != 0:
+		$AnimatedSprite2D.animation = "run"
+	elif velocity.y != 0:
+		$AnimatedSprite2D.animation = "run"
 	move_and_slide()
