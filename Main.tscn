@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqwsrlln4gwae"]
+[gd_scene load_steps=8 format=3 uid="uid://bqwsrlln4gwae"]
 
 [ext_resource type="Texture2D" uid="uid://bsd40c00n4m2v" path="res://Assets/Tilesets/Dungeon_Tileset.png" id="1_j6quk"]
 [ext_resource type="PackedScene" uid="uid://r0gkykvms8if" path="res://Player.tscn" id="2_s0lys"]
 [ext_resource type="PackedScene" uid="uid://8y7x4cpbgsc7" path="res://Enemy.tscn" id="3_b7g1l"]
+[ext_resource type="Script" path="res://Enemy_1_pathing.gd" id="4_otd3q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h8vr7"]
 texture = ExtResource("1_j6quk")
@@ -335,7 +336,13 @@ texture = ExtResource("1_j6quk")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_h8vr7")
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="Curve2D" id="Curve2D_rmwfb"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 100, 100, 0, 0, 0, 0, 310, 51, 0, 0, 0, 0, 500, 100, 0, 0, 0, 0, 100, 100)
+}
+point_count = 4
+
+[node name="Main" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_3mmx6")
@@ -348,8 +355,20 @@ position = Vector2(398, 178)
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, 3)
 scale = Vector2(-6.9013, -2.56603)
-zoom = Vector2(4, 4)
+zoom = Vector2(2, 2)
 
-[node name="Enemy" parent="." instance=ExtResource("3_b7g1l")]
-position = Vector2(338, 125)
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_rmwfb")
+script = ExtResource("4_otd3q")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(100, 100)
+rotation = -0.229232
+
+[node name="Enemy" parent="Path2D/PathFollow2D" instance=ExtResource("3_b7g1l")]
+position = Vector2(0, 0)
+rotation = 0.229232
 scale = Vector2(0.999013, 1.03855)
+
+[connection signal="body_entered" from="Path2D/PathFollow2D/Enemy" to="Path2D" method="_on_enemy_body_entered"]
+[connection signal="body_exited" from="Path2D/PathFollow2D/Enemy" to="Path2D" method="_on_enemy_body_exited"]
