@@ -336,11 +336,11 @@ texture = ExtResource("1_j6quk")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_h8vr7")
 
-[sub_resource type="Curve2D" id="Curve2D_rmwfb"]
+[sub_resource type="Curve2D" id="Curve2D_2m6v5"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 100, 100, 0, 0, 0, 0, 310, 51, 0, 0, 0, 0, 500, 100, 0, 0, 0, 0, 100, 100)
+"points": PackedVector2Array(91.2189, 78.703, -91.2189, -78.703, 104, 51, -128.915, -118.094, 128.915, 118.094, 273, 4.5, -116.542, 38.3519, 116.542, -38.3519, 561, -121, 202.482, -145.988, -202.482, 145.988, 504, 99, 0, 0, 0, 0, 104, 51)
 }
-point_count = 4
+point_count = 5
 
 [node name="Main" type="Node2D"]
 
@@ -358,17 +358,18 @@ scale = Vector2(-6.9013, -2.56603)
 zoom = Vector2(2, 2)
 
 [node name="Path2D" type="Path2D" parent="."]
-curve = SubResource("Curve2D_rmwfb")
+position = Vector2(-2, 156)
+scale = Vector2(1, -0.666667)
+curve = SubResource("Curve2D_2m6v5")
 script = ExtResource("4_otd3q")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(100, 100)
-rotation = -0.229232
+position = Vector2(104, 51)
+rotation = -2.42972
 
 [node name="Enemy" parent="Path2D/PathFollow2D" instance=ExtResource("3_b7g1l")]
 position = Vector2(0, 0)
 rotation = 0.229232
 scale = Vector2(0.999013, 1.03855)
 
-[connection signal="body_entered" from="Path2D/PathFollow2D/Enemy" to="Path2D" method="_on_enemy_body_entered"]
-[connection signal="body_exited" from="Path2D/PathFollow2D/Enemy" to="Path2D" method="_on_enemy_body_exited"]
+[connection signal="return_to_path" from="Path2D" to="Path2D/PathFollow2D/Enemy" method="_return_to_path"]

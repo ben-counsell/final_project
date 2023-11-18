@@ -55,6 +55,7 @@ size = Vector2(10, 15)
 
 [node name="Player" type="CharacterBody2D"]
 collision_priority = 100.0
+motion_mode = 1
 script = ExtResource("1_mib25")
 metadata/_edit_group_ = true
 

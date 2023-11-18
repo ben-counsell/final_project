@@ -1,25 +1,33 @@
 extends Path2D
 
-var inc = 0
-var patrol_speed = 100
-var enemy_following_path = true
+@onready var patroller = $PathFollow2D/Enemy
 
-var enemy_script = preload("res://Enemy.gd")
-@onready var enemy_instance = $PathFollow2D/Enemy
+signal return_to_path
+
+var inc = 0
+var patrol_speed = 80
+
+var patrolling = true
+var detection_position = null
+var returning_to_path = false
 
 func _ready():
-	enemy_instance.connect("player_detected", _on_player_detected)
-	enemy_instance.connect("player_not_detected", _on_player_not_detected)
+	patroller.connect("player_detected", _on_player_detected)
+	patroller.connect("player_not_detected", _on_player_not_detected)
+	patroller.connect("arrived_at_path", _on_return_to_path)
 
 func _process(delta):
-	if enemy_following_path:
+	if patrolling:
 		inc += delta * patrol_speed
 		$PathFollow2D.progress = inc
 
+func _on_return_to_path():
+	patrolling = true
+
 func _on_player_detected():
-	enemy_following_path = false
-	print("should be false: ", enemy_following_path)
+	patrolling = false
+	returning_to_path = false
+	detection_position = patroller.global_position
 
 func _on_player_not_detected():
-	enemy_following_path = true
-	print("should be true: ", enemy_following_path)
+	return_to_path.emit(detection_position)
