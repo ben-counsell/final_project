@@ -5,7 +5,7 @@ var target = null
 var path_return_point = null
 
 signal player_detected
-signal player_not_detected
+signal player_escaped_detection
 signal arrived_at_path
 
 func _ready():
@@ -13,14 +13,18 @@ func _ready():
 
 func _physics_process(_delta):
 	if target:
-		var velocity = (target.global_position - global_position).normalized()
-		move_and_collide(velocity)
+		move_towards(target.global_position)
 	if path_return_point:
-		var velocity = (path_return_point - global_position).normalized()
-		move_and_collide(velocity)
-		if global_position.distance_to(path_return_point) < 2:
+		move_towards(path_return_point)
+		if global_position.distance_to(path_return_point) < 1:
 			arrived_at_path.emit()
 			path_return_point = null
+			$Sprite2D/AnimationPlayer.play("idle")
+
+func move_towards(target_vector):
+	var velocity = (target_vector - global_position).normalized()
+	move_and_collide(velocity)
+	$Sprite2D/AnimationPlayer.play("chasing")
 
 func _on_detection_area_body_entered(body):
 	if body.name == "Player":
@@ -29,7 +33,7 @@ func _on_detection_area_body_entered(body):
 
 func _on_detection_area_body_exited(body):
 	if body.name == "Player":
-		player_not_detected.emit()
+		player_escaped_detection.emit()
 		target = null
 
 func _return_to_path(detection_position):
