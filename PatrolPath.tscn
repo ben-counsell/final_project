@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dt4rljk7ur4lv"]
+
+[ext_resource type="Script" path="res://Enemies/BasicEnemyPathing.gd" id="1_yp8w1"]
+[ext_resource type="PackedScene" uid="uid://8y7x4cpbgsc7" path="res://Enemies/BasicEnemy.tscn" id="2_gq3r7"]
+
+[sub_resource type="Curve2D" id="Curve2D_2m6v5"]
+
+[node name="Path2D" type="Path2D"]
+position = Vector2(59, 166)
+scale = Vector2(1, -0.666667)
+curve = SubResource("Curve2D_2m6v5")
+script = ExtResource("1_yp8w1")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(104, 51)
+rotation = -2.42972
+rotates = false
+
+[node name="Enemy" parent="PathFollow2D" instance=ExtResource("2_gq3r7")]
+position = Vector2(0, 0)
+rotation = -0.685778
+scale = Vector2(0.999013, 1.03855)
+
+[node name="_Timer_71572" type="Timer" parent="PathFollow2D"]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="return_to_path" from="." to="PathFollow2D/Enemy" method="_return_to_path"]

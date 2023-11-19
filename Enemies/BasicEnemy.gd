@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed = 80
+@export var speed = 60
 var target = null
 var path_return_point = null
 
@@ -22,8 +22,9 @@ func _physics_process(_delta):
 			$Sprite2D/AnimationPlayer.play("idle")
 
 func move_towards(target_vector):
-	var velocity = (target_vector - global_position).normalized()
-	move_and_collide(velocity)
+	var direction = (target_vector - global_position)
+	velocity = direction.normalized() * speed
+	move_and_slide()
 	$Sprite2D/AnimationPlayer.play("chasing")
 
 func _on_detection_area_body_entered(body):
