@@ -26,7 +26,8 @@ func _on_return_to_path():
 func _on_player_detected():
 	patrolling = false
 	returning_to_path = false
-	detection_position = patroller.global_position
+	if !detection_position:
+		detection_position = patroller.global_position
 
 func _on_player_escaped_detection():
 	return_to_path.emit(detection_position)
