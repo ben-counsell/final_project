@@ -10,8 +10,8 @@ var pathfinding
 
 @onready var navigation_agent = $NavigationAgent2D
 
-func _ready():
-	$AnimatedSprite2D.play("idle")
+#func _ready():
+#	$AnimatedSprite2D.play("idle")
 
 func _physics_process(_delta):
 	if player_target:
