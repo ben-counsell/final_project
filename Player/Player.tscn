@@ -36,13 +36,13 @@ animation = &"idle"
 position = Vector2(0.5, 3.5)
 shape = SubResource("RectangleShape2D_dpu6w")
 
-[node name="detecion_area" type="Area2D" parent="."]
+[node name="DetectionArea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="detecion_area"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 position = Vector2(0, 5.5)
 shape = SubResource("RectangleShape2D_ks22v")
 
-[node name="Inventory_UI" parent="." instance=ExtResource("11_n81kt")]
+[node name="InventoryUi" parent="." instance=ExtResource("11_n81kt")]
 offset_left = 29.0
 offset_top = 29.0
 offset_right = 131.0

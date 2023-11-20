@@ -1,6 +1,6 @@
 extends Path2D
 
-@onready var patroller = $PathFollow2D/NavigatorEnemy
+@onready var patroller = $PathFollow2D/EnemyNavigator
 
 signal return_to_path
 

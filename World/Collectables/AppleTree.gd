@@ -23,18 +23,15 @@ func _process(_delta):
 				print("e has been pressed, the state: ", state)
 				drop_apple()
 
-
 func _on_pickable_area_body_entered(body):
 	if body.has_method("player"):
 		player_in_area = true
 		player = body
 #		print("player is in the area: ",player_in_area)
 
-
 func _on_pickable_area_body_exited(body):
 	if body.has_method("player"):
 		player_in_area = false
-
 
 func _on_growth_timer_timeout():
 	if state == "no apples":
