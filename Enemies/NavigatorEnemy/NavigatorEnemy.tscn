@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://clr2ermprnh3m"]
+
+[ext_resource type="Script" path="res://Enemies/NavigatorEnemy/NavigatorEnemy.gd" id="1_sxvrb"]
+[ext_resource type="Texture2D" uid="uid://bvpcnmy4qkcgg" path="res://Enemies/NavigatorEnemy/Assets/priest3_v1_1.png" id="2_qb560"]
+[ext_resource type="Texture2D" uid="uid://d2v5atorowcra" path="res://Enemies/NavigatorEnemy/Assets/priest3_v1_2.png" id="3_un104"]
+[ext_resource type="Texture2D" uid="uid://dp77rkubnwuqc" path="res://Enemies/NavigatorEnemy/Assets/priest3_v1_3.png" id="4_ixbm5"]
+[ext_resource type="Texture2D" uid="uid://duj2brhejlnpl" path="res://Enemies/NavigatorEnemy/Assets/priest3_v1_4.png" id="5_h0b6c"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p8qet"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qb560")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_un104")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ixbm5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_h0b6c")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_80vem"]
+size = Vector2(9, 13)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pbvb7"]
+radius = 70.0643
+
+[node name="EnemyNavigator" type="CharacterBody2D"]
+script = ExtResource("1_sxvrb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_p8qet")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, 0.5)
+shape = SubResource("RectangleShape2D_80vem")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="DetectionRadius" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_pbvb7")
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
