@@ -1,29 +1,31 @@
-[gd_scene load_steps=13 format=3 uid="uid://r0gkykvms8if"]
+[gd_scene load_steps=15 format=3 uid="uid://r0gkykvms8if"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_mib25"]
-[ext_resource type="Texture2D" uid="uid://oniy0t4hf5ws" path="res://Assets/lizard_f_idle_anim_f0.png" id="2_xxxwr"]
-[ext_resource type="Texture2D" uid="uid://b5spade4qnhge" path="res://Assets/lizard_f_idle_anim_f1.png" id="3_0h377"]
-[ext_resource type="Texture2D" uid="uid://b5kdf68mskhjy" path="res://Assets/lizard_f_idle_anim_f2.png" id="4_7nbym"]
-[ext_resource type="Texture2D" uid="uid://2lx6uqmr4ie7" path="res://Assets/lizard_f_idle_anim_f3.png" id="5_ynox8"]
-[ext_resource type="Texture2D" uid="uid://ds88wvo62utci" path="res://Assets/lizard_f_run_anim_f0.png" id="6_7osxj"]
-[ext_resource type="Texture2D" uid="uid://b6qi4cmmsaf61" path="res://Assets/lizard_f_run_anim_f1.png" id="7_jwrcl"]
-[ext_resource type="Texture2D" uid="uid://cdff6m6ghe1vb" path="res://Assets/lizard_f_run_anim_f2.png" id="8_un67u"]
-[ext_resource type="Texture2D" uid="uid://dwvmtp1e7apt4" path="res://Assets/lizard_f_run_anim_f3.png" id="9_spyd7"]
+[ext_resource type="Resource" uid="uid://b0dqrlb77yc41" path="res://Inventory/Player_Inventory.tres" id="2_k2fbr"]
+[ext_resource type="Texture2D" uid="uid://oniy0t4hf5ws" path="res://Assets/Tilesets/lizard/lizard_f_idle_anim_f0.png" id="3_5mjx3"]
+[ext_resource type="Texture2D" uid="uid://b5spade4qnhge" path="res://Assets/Tilesets/lizard/lizard_f_idle_anim_f1.png" id="4_qd55v"]
+[ext_resource type="Texture2D" uid="uid://b5kdf68mskhjy" path="res://Assets/Tilesets/lizard/lizard_f_idle_anim_f2.png" id="5_jva5t"]
+[ext_resource type="Texture2D" uid="uid://2lx6uqmr4ie7" path="res://Assets/Tilesets/lizard/lizard_f_idle_anim_f3.png" id="6_7qhef"]
+[ext_resource type="Texture2D" uid="uid://ds88wvo62utci" path="res://Assets/Tilesets/lizard/lizard_f_run_anim_f0.png" id="7_xewa5"]
+[ext_resource type="Texture2D" uid="uid://b6qi4cmmsaf61" path="res://Assets/Tilesets/lizard/lizard_f_run_anim_f1.png" id="8_3cf58"]
+[ext_resource type="Texture2D" uid="uid://cdff6m6ghe1vb" path="res://Assets/Tilesets/lizard/lizard_f_run_anim_f2.png" id="9_07u5q"]
+[ext_resource type="Texture2D" uid="uid://dwvmtp1e7apt4" path="res://Assets/Tilesets/lizard/lizard_f_run_anim_f3.png" id="10_atqk1"]
+[ext_resource type="PackedScene" uid="uid://bmior6v73pyvd" path="res://Inventory/Inventory_UI.tscn" id="11_5namb"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ia1gh"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_xxxwr")
+"texture": ExtResource("3_5mjx3")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_0h377")
+"texture": ExtResource("4_qd55v")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_7nbym")
+"texture": ExtResource("5_jva5t")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_ynox8")
+"texture": ExtResource("6_7qhef")
 }],
 "loop": true,
 "name": &"idle",
@@ -31,16 +33,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_7osxj")
+"texture": ExtResource("7_xewa5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_jwrcl")
+"texture": ExtResource("8_3cf58")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_un67u")
+"texture": ExtResource("9_07u5q")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_spyd7")
+"texture": ExtResource("10_atqk1")
 }],
 "loop": true,
 "name": &"run",
@@ -56,7 +58,7 @@ size = Vector2(10, 15)
 [node name="Player" type="CharacterBody2D"]
 collision_priority = 100.0
 script = ExtResource("1_mib25")
-metadata/_edit_group_ = true
+inv = ExtResource("2_k2fbr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -72,3 +74,9 @@ shape = SubResource("RectangleShape2D_dpu6w")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detecion_area"]
 position = Vector2(0, 5.5)
 shape = SubResource("RectangleShape2D_ks22v")
+
+[node name="Inventory_UI" parent="." instance=ExtResource("11_5namb")]
+offset_left = -51.0
+offset_top = -53.0
+offset_right = 51.0
+offset_bottom = -13.0

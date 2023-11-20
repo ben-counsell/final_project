@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://8y7x4cpbgsc7"]
 
 [ext_resource type="Script" path="res://Enemy.gd" id="1_7moax"]
-[ext_resource type="Texture2D" uid="uid://biqg4ncvobnkd" path="res://Assets/slime.png" id="1_kte2o"]
+[ext_resource type="Texture2D" uid="uid://biqg4ncvobnkd" path="res://Assets/Tilesets/lizard/slime.png" id="2_sxqpm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_27m1k"]
 radius = 6.0
@@ -48,8 +48,9 @@ _data = {
 }
 
 [node name="Enemy" type="RigidBody2D"]
-position = Vector2(-72, 18)
+position = Vector2(235, 154)
 script = ExtResource("1_7moax")
+metadata/_edit_group_ = true
 
 [node name="enemy_collision_radius" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3)
@@ -66,7 +67,7 @@ shape = SubResource("CircleShape2D_0t50u")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, 1)
-texture = ExtResource("1_kte2o")
+texture = ExtResource("2_sxqpm")
 hframes = 7
 vframes = 5
 
