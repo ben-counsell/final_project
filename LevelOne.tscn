@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://clr2ermprnh3m" path="res://Enemies/NavigatorEnemy/NavigatorEnemy.tscn" id="5_c56k4"]
 [ext_resource type="Script" path="res://Enemies/NavigatorEnemy/NavigatorEnemyPathing.gd" id="7_8pkhx"]
 [ext_resource type="PackedScene" uid="uid://0efmts7sx4jw" path="res://World/Collectables/AppleTree.tscn" id="7_is2v0"]
-[ext_resource type="PackedScene" uid="uid://qr1u6kcca408" path="res://World/Collectables/TVCollectable.tscn" id="9_ifdly"]
+[ext_resource type="PackedScene" path="res://World/Collectables/TVCollectable.tscn" id="9_ifdly"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_i6x4w"]
 vertices = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
