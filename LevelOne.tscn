@@ -8580,6 +8580,7 @@ point_count = 7
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
+scale = Vector2(1, 1.00166)
 
 [node name="EggCollectable" parent="." instance=ExtResource("1_kyujc")]
 
@@ -8619,15 +8620,6 @@ layer_4/y_sort_origin = 0
 layer_4/z_index = -5
 layer_4/tile_data = PackedInt32Array(20, 262147, 29, 21, 327683, 29, 22, 393219, 29)
 
-[node name="Player" parent="." instance=ExtResource("4_ycmis")]
-position = Vector2(398, 178)
-SPEED = 180.0
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(0, 3)
-scale = Vector2(-6.9013, -2.56603)
-zoom = Vector2(2, 2)
-
 [node name="AppleTree" parent="." instance=ExtResource("7_is2v0")]
 position = Vector2(75, 63)
 
@@ -8642,20 +8634,26 @@ rotation = -2.0844
 rotates = false
 
 [node name="EnemyNavigator" parent="Path2D/PathFollow2D" instance=ExtResource("5_c56k4")]
-motion_mode = 1
-wall_min_slide_angle = 0.0
+rotation = 2.0944
+spawn_point = Vector2(274, 41)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="Path2D/PathFollow2D/EnemyNavigator"]
 path_desired_distance = 10.0
 path_max_distance = 200.0
 avoidance_enabled = true
 radius = 30.0
-debug_enabled = true
 
 [node name="TVCollectable" parent="." instance=ExtResource("9_ifdly")]
 position = Vector2(200, -60)
 
+[node name="Player" parent="." instance=ExtResource("4_ycmis")]
+position = Vector2(398, 178)
+speed = 120.0
+spawn_point = Vector2(398, 178)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, 3)
+scale = Vector2(-6.9013, -2.56603)
+zoom = Vector2(2, 2)
+
 [connection signal="return_to_path" from="Path2D" to="Path2D/PathFollow2D/EnemyNavigator" method="_return_to_path"]
-[connection signal="arrived_at_path" from="Path2D/PathFollow2D/EnemyNavigator" to="Path2D" method="_on_return_to_path"]
-[connection signal="player_detected" from="Path2D/PathFollow2D/EnemyNavigator" to="Path2D" method="_on_player_detected"]
-[connection signal="player_escaped_detection" from="Path2D/PathFollow2D/EnemyNavigator" to="Path2D" method="_on_player_escaped_detection"]
