@@ -1,6 +1,6 @@
 extends Path2D
 
-@onready var patroller = $PathFollow2D/EnemyNavigator
+@export var patroller: CharacterBody2D
 @onready var animation_player = $PathFollow2D/EnemyNavigator/AnimationPlayer
 
 signal return_to_path

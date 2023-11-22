@@ -61,16 +61,17 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_1k5th")
 theme_override_font_sizes/font_size = 70
 text = "LIQUIDATION DASH"
+editable = false
 scroll_smooth = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = -3
+clip_contents = true
 layout_mode = 0
-offset_left = -479.0
-offset_top = -238.0
-offset_right = 1583.0
-offset_bottom = 1083.0
+offset_right = 1920.0
+offset_bottom = 1080.0
 texture = ExtResource("3_dfcvi")
+expand_mode = 5
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

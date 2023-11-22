@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhtaetwfybk2c"]
+
+[ext_resource type="Script" path="res://Enemies/NavigatorEnemy/NavigatorEnemyPathing.gd" id="1_yyd2y"]
+[ext_resource type="PackedScene" uid="uid://clr2ermprnh3m" path="res://Enemies/NavigatorEnemy/NavigatorEnemy.tscn" id="2_4l7rc"]
+
+[sub_resource type="Curve2D" id="Curve2D_dwnog"]
+_data = {
+"points": PackedVector2Array(10.3826, 18.4055, -10.3826, -18.4055, 274, 41, -15.5739, 14.1581, 15.5739, -14.1581, 284, -49, -22.181, -14.1581, 22.181, 14.1581, 374, -64, -2.83162, -11.7984, 2.83162, 11.7984, 400, -27, 12.7423, -35.3953, -12.7423, 35.3953, 406, 71, 20.7652, 4.71937, -20.7652, -4.71937, 343, 112, 0, 0, 0, 0, 274, 41)
+}
+point_count = 7
+
+[node name="PatrolPath" type="Path2D" node_paths=PackedStringArray("patroller")]
+position = Vector2(34, 5)
+curve = SubResource("Curve2D_dwnog")
+script = ExtResource("1_yyd2y")
+patroller = NodePath("PathFollow2D/EnemyNavigator")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(274, 41)
+rotation = -2.0844
+rotates = false
+
+[node name="EnemyNavigator" parent="PathFollow2D" instance=ExtResource("2_4l7rc")]
+rotation = 2.0944
+spawn_point = Vector2(274, 41)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="PathFollow2D/EnemyNavigator"]
+path_desired_distance = 10.0
+path_max_distance = 200.0
+avoidance_enabled = true
+radius = 30.0
+
+[node name="_Timer_38048" type="Timer" parent="PathFollow2D"]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="return_to_path" from="." to="PathFollow2D/EnemyNavigator" method="_return_to_path"]

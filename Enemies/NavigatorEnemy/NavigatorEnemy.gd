@@ -4,7 +4,7 @@ signal player_detected
 signal player_escaped_detection
 signal arrived_at_path
 
-var chase_speed = 100
+var chase_speed = 90
 var return_speed = 40
 var player_target
 var pathfinding
@@ -29,9 +29,9 @@ func move_towards(target_vector, speed):
 	move_and_slide()
 
 func animate_movement():
-	if velocity.x > 33:
+	if velocity.x > 40:
 		$AnimationPlayer.play("running_right")
-	elif velocity.x < -33:
+	elif velocity.x < -40:
 		$AnimationPlayer.play("running_left")
 	elif velocity.y > 0:
 		$AnimationPlayer.play("running_down")
